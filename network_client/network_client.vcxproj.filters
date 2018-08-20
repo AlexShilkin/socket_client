@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Файлы заголовков">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Файлы ресурсов">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Файлы заголовков\event">
+      <UniqueIdentifier>{6ec8cddf-9746-4303-8877-03745c1ae124}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\utils">
+      <UniqueIdentifier>{b4af3f6e-5c06-4f33-9aaf-3f451477dc43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\network">
+      <UniqueIdentifier>{db2b12fb-2116-4832-b564-c4ebe258bbc0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\message">
+      <UniqueIdentifier>{f96063e9-62f4-4896-914e-1839cef252aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\game">
+      <UniqueIdentifier>{c799a45c-443e-458c-b926-6e87072e6c9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\message_handler">
+      <UniqueIdentifier>{5ab65a4a-2222-4097-873c-51cb68b66e34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Исходные файлы\event">
+      <UniqueIdentifier>{4a2ade22-2a32-4303-a1c2-d005852e0afd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\utils">
+      <UniqueIdentifier>{eb70924f-c92e-4e0f-9121-c55fafe595b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\network">
+      <UniqueIdentifier>{865d081f-d2f3-41c5-bd60-86afde1e77fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\message">
+      <UniqueIdentifier>{01ce0917-3446-4145-9f81-a80442b4c815}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\game">
+      <UniqueIdentifier>{bb4f3dcf-a32c-4536-a330-03a4d4bff6da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\message_handler">
+      <UniqueIdentifier>{669fc696-98a4-4348-8461-96b5321461d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\client_service">
+      <UniqueIdentifier>{690b3ec7-49fe-42be-9740-8ada46166fe1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="AssingNetworkMessageHandler.cpp">
+      <Filter>Исходные файлы\message_handler</Filter>
+    </ClCompile>
+    <ClCompile Include="NetworkMessageHandlerFactory.cpp">
+      <Filter>Исходные файлы\message_handler</Filter>
+    </ClCompile>
+    <ClCompile Include="Events.cpp">
+      <Filter>Исходные файлы\event</Filter>
+    </ClCompile>
+    <ClCompile Include="CardClient.cpp">
+      <Filter>Исходные файлы\game</Filter>
+    </ClCompile>
+    <ClCompile Include="NetworkMessageFactory.cpp">
+      <Filter>Исходные файлы\message</Filter>
+    </ClCompile>
+    <ClCompile Include="QueueNetworkMessage.cpp">
+      <Filter>Исходные файлы\message</Filter>
+    </ClCompile>
+    <ClCompile Include="AssignNetworkMessage.cpp">
+      <Filter>Исходные файлы\message</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseNetworkMessage.cpp">
+      <Filter>Исходные файлы\message</Filter>
+    </ClCompile>
+    <ClCompile Include="Message.cpp">
+      <Filter>Исходные файлы\message</Filter>
+    </ClCompile>
+    <ClCompile Include="Sender.cpp">
+      <Filter>Исходные файлы\network</Filter>
+    </ClCompile>
+    <ClCompile Include="Host.cpp">
+      <Filter>Исходные файлы\network</Filter>
+    </ClCompile>
+    <ClCompile Include="NetworkBase.cpp">
+      <Filter>Исходные файлы\network</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils.cpp">
+      <Filter>Исходные файлы\utils</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="NetworkMessageHandler.h">
+      <Filter>Файлы заголовков\message_handler</Filter>
+    </ClInclude>
+    <ClInclude Include="NetworkMessageHandlerFactory.h">
+      <Filter>Файлы заголовков\message_handler</Filter>
+    </ClInclude>
+    <ClInclude Include="AssingNetworkMessageHandler.h">
+      <Filter>Файлы заголовков\message_handler</Filter>
+    </ClInclude>
+    <ClInclude Include="Events.h">
+      <Filter>Файлы заголовков\event</Filter>
+    </ClInclude>
+    <ClInclude Include="CardClient.h">
+      <Filter>Файлы заголовков\game</Filter>
+    </ClInclude>
+    <ClInclude Include="AssignNetworkMessage.h">
+      <Filter>Файлы заголовков\message</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseNetworkMessage.h">
+      <Filter>Файлы заголовков\message</Filter>
+    </ClInclude>
+    <ClInclude Include="Message.h">
+      <Filter>Файлы заголовков\message</Filter>
+    </ClInclude>
+    <ClInclude Include="NetworkMessage.h">
+      <Filter>Файлы заголовков\message</Filter>
+    </ClInclude>
+    <ClInclude Include="NetworkMessageFactory.h">
+      <Filter>Файлы заголовков\message</Filter>
+    </ClInclude>
+    <ClInclude Include="QueueNetworkMessage.h">
+      <Filter>Файлы заголовков\message</Filter>
+    </ClInclude>
+    <ClInclude Include="Sender.h">
+      <Filter>Файлы заголовков\network</Filter>
+    </ClInclude>
+    <ClInclude Include="NetworkBase.h">
+      <Filter>Файлы заголовков\network</Filter>
+    </ClInclude>
+    <ClInclude Include="Host.h">
+      <Filter>Файлы заголовков\network</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.h">
+      <Filter>Файлы заголовков\utils</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
