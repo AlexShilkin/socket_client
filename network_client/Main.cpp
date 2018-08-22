@@ -157,25 +157,7 @@ int main()
 	//callback key
 	glfwSetKeyCallback(window, key_callback);
 	
-	//Vertexs
-
-	GLfloat vertices[] = {
-	-0.5f,-0.5f,0.0f,
-	0.5f,-0.5f,0.0f,
-	0.5f,0.5f,0.0f,
-	};
-
-	//end Vertexs
 	
-	//VBO
-
-	GLuint vbo;
-	glGenBuffers(1, &vbo);
-	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STREAM_DRAW);
-
-	//end VBO
-
 	//Shaders
 	//vertex
 	const GLchar* vertexShaderSource = "#version 330 core\n"
@@ -254,8 +236,7 @@ int main()
 			<< log
 			<< endl;
 	}
-	//использование программы
-	glUseProgram(shaderProgramm);
+
 
 	//удаление шейдеров
 	glDeleteShader(vertexShader);
@@ -265,7 +246,43 @@ int main()
 
 	//end Shaders
 	
+	//Связывание вершинных атрибутов
 	
+	//Vertexs
+
+	GLfloat vertices[] = {
+		-0.5f,-0.5f,0.0f,
+		0.5f,-0.5f,0.0f,
+		0.5f,0.5f,0.0f,
+	};
+
+	//end Vertexs
+
+	//VBO VAO
+	GLuint vao;
+	glGenVertexArrays(1, &vao);
+
+	GLuint vbo;
+	glGenBuffers(1, &vbo);
+
+	
+	//end VBO VAO
+
+
+	glBindVertexArray(vao);
+	
+	glBindBuffer(GL_ARRAY_BUFFER, vbo);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STREAM_DRAW);
+	
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)0);
+	glEnableVertexAttribArray(0);
+	glBindVertexArray(0);
+
+
+	
+
+
+
 
 	//main loop
 	while (!glfwWindowShouldClose(window))
@@ -274,6 +291,14 @@ int main()
 		//begin render
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
+		
+		
+		//использование программы
+		glUseProgram(shaderProgramm);
+
+		glBindVertexArray(vao);
+		glDrawArrays(GL_TRIANGLES, 0, 3);
+		glBindVertexArray(0);
 
 		//end render
 		glfwSwapBuffers(window);
