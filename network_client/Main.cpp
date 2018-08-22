@@ -1,7 +1,6 @@
 
 #define GLEW_STATIC
-#include <GL\glew.h>
-
+#include <GL/glew.h>
 #include <glfw3.h>
 
 #include <WinSock2.h>
@@ -98,6 +97,7 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 
 int main()
 {
+#ifdef ONLY_NETWORK
 	queueNetworkMessage = new QueueNetworkMessage();
 	char* nameClient = "Alex";
 	host = new Host(nameClient);
@@ -115,8 +115,9 @@ int main()
 	WSACleanup();
 	
 	//end socket
+#endif // ONLY_NETWORK
 
-	/*Comment
+	
 	
 	//»нициализаци€ GLFW
 	glfwInit();
@@ -155,18 +156,57 @@ int main()
 
 	//callback key
 	glfwSetKeyCallback(window, key_callback);
+	
+	//Vertexs
+
 	GLfloat vertices[] = {
 	-0.5f,-0.5f,0.0f,
 	0.5f,-0.5f,0.0f,
 	0.5f,0.5f,0.0f,
 	};
 
+	//end Vertexs
+	
+	//VBO
+
 	GLuint vbo;
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STREAM_DRAW);
 
+	//end VBO
 
+	//Shaders
+
+	const GLchar* vertexShaderSource = "#version 330 core\n"
+    "layout (location = 0) in vec3 position;\n"
+    "void main()\n"
+    "{\n"
+    "gl_Position = vec4(position.x, position.y, position.z, 1.0);\n"
+	"}\0";
+
+	//создение вершинного шейдера
+	GLuint vertexShader;
+	vertexShader = glCreateShader(GL_VERTEX_SHADER);
+
+	//прив€зка исходного кода шейдера и компил€ци€
+	glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
+	glCompileShader(vertexShader);
+
+	//проверка компил€ции
+	GLint success;
+	GLchar infoLog[512];
+	glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
+
+	if (!success) {
+		glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
+		cout << "ERROR::SHADER::VERTEX::COMPILATION_FALIED\n"
+			<< infoLog
+			<< endl;
+	}
+
+	//end Shaders
+	
 	//main loop
 	while (!glfwWindowShouldClose(window))
 	{
@@ -178,6 +218,6 @@ int main()
 		//end render
 		glfwSwapBuffers(window);
 	}
-	*/
+	
 }
 

@@ -52,6 +52,12 @@
     <Filter Include="Исходные файлы\client_service">
       <UniqueIdentifier>{690b3ec7-49fe-42be-9740-8ada46166fe1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\graphic">
+      <UniqueIdentifier>{3feb9a67-5497-4180-a4c7-d708990c6e24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\graphic">
+      <UniqueIdentifier>{bc2573d5-c802-41f1-88e7-680677f9e8af}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
