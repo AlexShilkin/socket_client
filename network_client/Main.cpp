@@ -177,7 +177,7 @@ int main()
 	//end VBO
 
 	//Shaders
-
+	//vertex
 	const GLchar* vertexShaderSource = "#version 330 core\n"
     "layout (location = 0) in vec3 position;\n"
     "void main()\n"
@@ -194,19 +194,79 @@ int main()
 	glCompileShader(vertexShader);
 
 	//проверка компил€ции
-	GLint success;
+	GLint successVertex;
 	GLchar infoLog[512];
-	glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
+	glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &successVertex);
 
-	if (!success) {
+	if (!successVertex) {
 		glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
 		cout << "ERROR::SHADER::VERTEX::COMPILATION_FALIED\n"
 			<< infoLog
 			<< endl;
 	}
+	//end vertex
+
+	//fragment
+
+	const GLchar* fragmentShaderSource = "#version 330 core\n"
+		"out vec4 color;\n"
+		"void main()\n"
+		"{\n"
+		"color = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
+		"}\0";
+	//создение фрагментного шейдера
+	GLuint fragmentShader;
+	fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+
+	//прив€зка исходного кода шейдера и компил€ци€
+	glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
+	glCompileShader(fragmentShader);
+
+	//проверка компил€ции
+	GLint successFragment;
+	GLchar infoLogFragment[512];
+	glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &successFragment);
+
+	if (!successFragment) {
+		glGetShaderInfoLog(fragmentShader, 512, NULL, infoLogFragment);
+		cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FALIED\n"
+			<< infoLogFragment
+			<< endl;
+	}
+
+	//end fragment
+
+	//Shader Programm
+	//создение программы
+	GLuint shaderProgramm;
+	shaderProgramm = glCreateProgram();
+	//соединени€ шейдеров с программой
+	glAttachShader(shaderProgramm, vertexShader);
+	glAttachShader(shaderProgramm, fragmentShader);
+	glLinkProgram(shaderProgramm);
+	//проверка shader programm
+	GLint successShaderProgramm;
+	GLchar log[512];
+	glGetProgramiv(shaderProgramm, GL_LINK_STATUS, &successShaderProgramm);
+	if (!successShaderProgramm) {
+		glGetProgramInfoLog(shaderProgramm, 512, NULL, log);
+		cout << "ERROR::SHADER::PROGRAMM::COMPILATION_FALIED\n"
+			<< log
+			<< endl;
+	}
+	//использование программы
+	glUseProgram(shaderProgramm);
+
+	//удаление шейдеров
+	glDeleteShader(vertexShader);
+	glDeleteShader(fragmentShader);
+
+	//end Shader Programm
 
 	//end Shaders
 	
+	
+
 	//main loop
 	while (!glfwWindowShouldClose(window))
 	{
