@@ -136,6 +136,7 @@
     <ClCompile Include="NetworkMessageHandlerFactory.cpp" />
     <ClCompile Include="QueueNetworkMessage.cpp" />
     <ClCompile Include="Sender.cpp" />
+    <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -153,6 +154,7 @@
     <ClInclude Include="NetworkMessageHandlerFactory.h" />
     <ClInclude Include="QueueNetworkMessage.h" />
     <ClInclude Include="Sender.h" />
+    <ClInclude Include="Shader.h" />
     <ClInclude Include="Utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

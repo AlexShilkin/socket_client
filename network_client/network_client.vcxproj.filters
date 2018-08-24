@@ -58,6 +58,12 @@
     <Filter Include="Файлы заголовков\graphic">
       <UniqueIdentifier>{bc2573d5-c802-41f1-88e7-680677f9e8af}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\graphic\base">
+      <UniqueIdentifier>{56783144-a035-40a6-841b-f338d1b3eeac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\graphic\base">
+      <UniqueIdentifier>{f84f577f-cf52-48d4-938e-406a0a54ebbd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -101,6 +107,9 @@
     </ClCompile>
     <ClCompile Include="Utils.cpp">
       <Filter>Исходные файлы\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Исходные файлы\graphic\base</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -148,6 +157,9 @@
     </ClInclude>
     <ClInclude Include="Utils.h">
       <Filter>Файлы заголовков\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Файлы заголовков\graphic\base</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
