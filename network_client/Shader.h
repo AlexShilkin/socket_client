@@ -10,9 +10,11 @@
 
 class Shader
 {
-public:
-	
+private:
 	GLuint program;
+
+public:
+	Shader();
 
 	Shader(const GLchar* vertexPath, const GLchar* fragmentPath);
 	

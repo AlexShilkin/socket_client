@@ -1,6 +1,10 @@
 #include "Shader.h"
 
 
+Shader::Shader()
+{
+}
+
 Shader::Shader(const GLchar * vertexPath, const GLchar * fragmentPath)
 {
 
@@ -16,7 +20,7 @@ Shader::Shader(const GLchar * vertexPath, const GLchar * fragmentPath)
 	try {
 
 		vertexShaderFile.open(vertexPath);
-		fragmentShaderFile.open(fragmentCode);
+		fragmentShaderFile.open(fragmentPath);
 
 		std::stringstream vertexShaderStream, fragmentShaderStream;
 

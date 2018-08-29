@@ -14,6 +14,8 @@
 #include "QueueNetworkMessage.h"
 #include "NetworkMessageHandler.h"
 #include "NetworkMessageHandlerFactory.h"
+#include "Shader.h"
+#include "GraphicObject.h"
 
 using namespace std;
 #pragma warning(disable : 4996)
@@ -158,98 +160,6 @@ int main()
 	glfwSetKeyCallback(window, key_callback);
 	
 	
-	//Shaders
-	//vertex
-	const GLchar* vertexShaderSource = "#version 330 core\n"
-    "layout (location = 0) in vec3 position;\n"
-    "layout (location = 1) in vec3 color;\n"
-	"out vec3 outColor;\n"
-    "void main()\n"
-    "{\n"
-    "gl_Position = vec4(position, 1.0f);\n"
-	"outColor = color;\n"
-	"}\0";
-
-	//создение вершинного шейдера
-	GLuint vertexShader;
-	vertexShader = glCreateShader(GL_VERTEX_SHADER);
-
-	//прив€зка исходного кода шейдера и компил€ци€
-	glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
-	glCompileShader(vertexShader);
-
-	//проверка компил€ции
-	GLint successVertex;
-	GLchar infoLog[512];
-	glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &successVertex);
-
-	if (!successVertex) {
-		glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
-		cout << "ERROR::SHADER::VERTEX::COMPILATION_FALIED\n"
-			<< infoLog
-			<< endl;
-	}
-	//end vertex
-
-	//fragment
-
-	const GLchar* fragmentShaderSource = "#version 330 core\n"
-		"in vec3 outColor;\n"
-		"out vec4 color;\n"
-		"void main()\n"
-		"{\n"
-		"color = vec4(outColor,1.0f);\n"
-		"}\0";
-	//создение фрагментного шейдера
-	GLuint fragmentShader;
-	fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-
-	//прив€зка исходного кода шейдера и компил€ци€
-	glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
-	glCompileShader(fragmentShader);
-
-	//проверка компил€ции
-	GLint successFragment;
-	GLchar infoLogFragment[512];
-	glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &successFragment);
-
-	if (!successFragment) {
-		glGetShaderInfoLog(fragmentShader, 512, NULL, infoLogFragment);
-		cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FALIED\n"
-			<< infoLogFragment
-			<< endl;
-	}
-
-	//end fragment
-
-	//Shader Programm
-	//создение программы
-	GLuint shaderProgramm;
-	shaderProgramm = glCreateProgram();
-	//соединени€ шейдеров с программой
-	glAttachShader(shaderProgramm, vertexShader);
-	glAttachShader(shaderProgramm, fragmentShader);
-	glLinkProgram(shaderProgramm);
-	//проверка shader programm
-	GLint successShaderProgramm;
-	GLchar log[512];
-	glGetProgramiv(shaderProgramm, GL_LINK_STATUS, &successShaderProgramm);
-	if (!successShaderProgramm) {
-		glGetProgramInfoLog(shaderProgramm, 512, NULL, log);
-		cout << "ERROR::SHADER::PROGRAMM::COMPILATION_FALIED\n"
-			<< log
-			<< endl;
-	}
-
-
-	//удаление шейдеров
-	glDeleteShader(vertexShader);
-	glDeleteShader(fragmentShader);
-
-	//end Shader Programm
-
-	//end Shaders
-	
 	//—в€зывание вершинных атрибутов
 	
 	//Vertexs
@@ -260,34 +170,20 @@ int main()
 		 0.5f, 0.5f,0.0f, 0.0f, 0.0f, 1.0f
 	};
 
+	GLfloat texCoords[] = {
+		0.0f, 0.0f,  // Ќижний левый угол 
+		1.0f, 0.0f,  // Ќижний правый угол
+		1.0f, 1.0f   // ¬ерхн€€ центральна€ сторона
+	};
+
 	//end Vertexs
 
-	//VBO VAO
-	GLuint vao;
-	glGenVertexArrays(1, &vao);
-
-	GLuint vbo;
-	glGenBuffers(1, &vbo);
-
+	Shader shader = Shader("D:\\repos\\network_client\\data\\vertex_shader.txt",
+		"D:\\repos\\network_client\\data\\fragment_shader.txt");
 	
-	//end VBO VAO
-
-
-	glBindVertexArray(vao);
-	
-	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STREAM_DRAW);
-	
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE,  6 * sizeof(GLfloat), (GLvoid*)0);
-	glEnableVertexAttribArray(0);
-	
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GL_FLOAT)));
-	glEnableVertexAttribArray(1);
-
-	glBindVertexArray(0);
-
-
-	
+	GraphicObject treangle = GraphicObject();
+	treangle.setVertices(vertices,18);
+	treangle.setShader(shader);
 
 
 
@@ -299,23 +195,7 @@ int main()
 		//begin render
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
-		
-		/*
-		GLfloat timeValue = glfwGetTime();
-		GLfloat greenValue = (sin(timeValue) / 2) + 0.5;
-		GLuint vertexColorLocation = glGetUniformLocation(shaderProgramm, "outColor");
-		*/
-		
-		//использование программы
-		glUseProgram(shaderProgramm);
-
-		//glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
-
-		glBindVertexArray(vao);
-		glDrawArrays(GL_TRIANGLES, 0, 3);
-		glBindVertexArray(0);
-
-		
+		treangle.draw();
 
 		//end render
 		glfwSwapBuffers(window);
